@@ -1,0 +1,75 @@
+﻿<Window x:Class="QuClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuClient"
+        mc:Ignorable="d"
+        Title="QuClient" Height="200" Width="400"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StatusBar Grid.Row="1" Grid.ColumnSpan="3">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="27" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="52" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="47" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="80" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0">
+                <Border Height="18" Width="20" BorderBrush="Red" BorderThickness="2">
+                    <TextBlock Text="{Binding Path=MidiChannel}" ToolTip="MIDI Channel"/>
+                </Border>
+            </StatusBarItem>
+            <Separator Grid.Column="1" />
+            <StatusBarItem Grid.Column="2">
+                <Border Height="18" Width="45" BorderBrush="Green" BorderThickness="2">
+                    <TextBlock Text="{Binding Path=BoxType}" ToolTip="Box ID"/>
+                </Border>
+            </StatusBarItem>
+            <Separator Grid.Column="3" />
+            <StatusBarItem Grid.Column="4">
+                <Border Height="18" Width="40" BorderBrush="Yellow" BorderThickness="2">
+                    <TextBlock Text="{Binding Path=OSVersion}" ToolTip="OS Version"/>
+                </Border>
+            </StatusBarItem>
+            <Separator Grid.Column="5" />
+            <StatusBarItem Grid.Column="6">
+                <TextBlock Text="{Binding Path=Message}"/>
+            </StatusBarItem>
+            <Separator Grid.Column="7" />
+            <StatusBarItem Grid.Column="8">
+                <!--Button Content="Get System State" Click="btnGetSystemState_Click" /-->
+                <Menu>
+                    <MenuItem Header="Commands">
+                        <MenuItem Header="ActiveSense" Click="mnuItemActiveSense_Click"/>
+                        <MenuItem Header="Get System State" Click="mnuItemGetSystemState_Click"/>
+                        <MenuItem Header="Send Test Request" Click="mnuItemSendRequest_Click"/>
+                    </MenuItem>
+                </Menu>
+            </StatusBarItem>
+        </StatusBar>
+        <local:PopUpMessageBox x:Name="dlgMessageBox" Placement="Center" 
+                               PopupAnimation="Slide" AllowsTransparency="True"
+                               StaysOpen="True"/>
+    </Grid>
+</Window>

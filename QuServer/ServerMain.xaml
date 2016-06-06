@@ -1,0 +1,65 @@
+﻿<Window x:Class="QuServer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StageMix"
+        mc:Ignorable="d"
+        Title="QuServer" Height="150" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="MIDI channel:"/>
+        <TextBox Text="{Binding Path=MidiChannel, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Box ID:"/>
+        <ComboBox SelectedIndex="{Binding Path=BoxId}" Grid.Row="1" Grid.Column="1">
+            <ComboBoxItem Content="Qu-16"/>
+            <ComboBoxItem Content="Qu-24"/>
+            <ComboBoxItem Content="Qu-22"/>
+            <ComboBoxItem Content="Qu-Pac"/>
+        </ComboBox>
+        <Label Grid.Row="2" Grid.Column="0" Content="Version:"/>
+        <TextBox Text="{Binding Path=Version, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1"/>
+
+        <StatusBar Grid.Row="3" Grid.ColumnSpan="2">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0">
+                <TextBlock Text="{Binding Path=Status}"/>
+            </StatusBarItem>
+            <Separator Grid.Column="1" />
+            <StatusBarItem Grid.Column="2">
+                <TextBlock Text="{Binding Path=MessageSent}"/>
+            </StatusBarItem>
+            <Separator Grid.Column="3" />
+            <StatusBarItem Grid.Column="4">
+                <TextBlock Text="{Binding Path=MessageReceived}"/>
+            </StatusBarItem>
+            <Separator Grid.Column="5" />
+            <StatusBarItem Grid.Column="6">
+                <Border Height="18" Width="18" Background="{Binding Path=ActiveSensed}" ToolTip="Active Sense"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
